@@ -27,15 +27,32 @@ public class sort {
         String temp;
         int n = mylist.size();
         String [] tmp = new String[n];
+        int MegaBytes = 10241024;
+        int dataSize = 1024 * 1024; //MB format, with the division of 1024 x 1024 which is equal to 1 MB.
+
+        long beforeUsedMem_mergeSort=Runtime.getRuntime().totalMemory()-Runtime.getRuntime().freeMemory();
         mergeSort(mylist, tmp,  0,  n - 1);
+        long afterUsedMem_mergeSort=Runtime.getRuntime().totalMemory()-Runtime.getRuntime().freeMemory()/MegaBytes;
+        long actualMemUsed_mergeSort=afterUsedMem_mergeSort-beforeUsedMem_mergeSort;
+
+        System.out.println("merge Sort memory used : "+actualMemUsed_mergeSort+"MB");
         System.out.println("Words after sorted By merge Sort : ");
         Disply_sorted_list(mylist);
 
+        long beforeUsedMem_qsort=Runtime.getRuntime().totalMemory()-Runtime.getRuntime().freeMemory();
         qsort(mylist, 0, n - 1);
+
+        long afterUsedMem_qsort=Runtime.getRuntime().totalMemory()-Runtime.getRuntime().freeMemory()/MegaBytes;
+        long actualMemUsed_qsort=afterUsedMem_qsort-beforeUsedMem_qsort;
+        System.out.println("Quick Sort memory used : "+actualMemUsed_qsort+"MB");
         System.out.println("Words after sorted By Quick Sort : ");
         Disply_sorted_list(mylist);
 
+        long beforeUsedMem_3qsort=Runtime.getRuntime().totalMemory()-Runtime.getRuntime().freeMemory();
         three_way_qort(mylist,0,n-1);
+        long afterUsedMem_3qsort=Runtime.getRuntime().totalMemory()-Runtime.getRuntime().freeMemory()/MegaBytes;
+        long actualMemUsed_3qsort=afterUsedMem_3qsort-beforeUsedMem_3qsort;
+        System.out.println("3 Way Quick Sort memory used : "+actualMemUsed_3qsort+"MB");
         System.out.println("Words after sorted By 3 Way Quick Sort : ");
         Disply_sorted_list(mylist);
 
